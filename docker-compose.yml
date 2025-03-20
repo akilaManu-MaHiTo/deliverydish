@@ -6,7 +6,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - SPRING_DATA_MONGODB_URI=mongodb+srv://akilamanu:akila@deliverproducts.brsje.mongodb.net/products?retryWrites=true&w=majority&appName=DeliverProducts
+      - SPRING_DATA_MONGODB_URI=mongodb+srv://admin:admin@springapp.g71fe.mongodb.net/MyApp?retryWrites=true&w=majority&appName=springApp
     restart: always
     networks:
       - app-network

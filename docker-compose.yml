@@ -1,0 +1,16 @@
+version: '3.8'
+name: 'DeliverDishDocker'
+services:
+  deliver-products:
+    build: ./deliver-products
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb+srv://akilamanu:akila@deliverproducts.brsje.mongodb.net/products?retryWrites=true&w=majority&appName=DeliverProducts
+    restart: always
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

@@ -3,7 +3,7 @@ services:
   deliver-products:
     build: ./deliver-products
     ports:
-      - "8080:8080"
+      - "8001:8001"
     environment:
       - SPRING_PRODUCT_MONGODB_URI=${SPRING_PRODUCT_MONGODB_URI}
     restart: always

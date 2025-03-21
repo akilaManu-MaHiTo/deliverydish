@@ -1,0 +1,46 @@
+version: '3'
+
+vars:
+  GOOS: "{{.OS}}"  # Corrected to use the built-in OS variable
+  MVNW: '/'
+  DC_DIR: "/"
+  DOCKER_DC_FILE: "docker-compose.yml"
+
+tasks:
+  default:
+    cmds:
+      - task: test
+
+  test: 
+    deps: [format]
+    cmds:
+      - "{{.MVNW}} clean verify"
+
+  format:
+    cmds:
+      - "{{.MVNW}} spotless:apply"  # Fix the mvnw path here
+
+  build:
+    cmds:
+      - "{{.MVNW}} verify"
+
+  start_docker:
+    cmds: 
+      - docker-compose -f "{{.DOCKER_DC_FILE}}" up -d  # Added correct `docker-compose` command
+
+  stop_docker:
+    cmds:
+      - docker-compose -f "{{.DOCKER_DC_FILE}}" stop  # Added correct `docker-compose` command
+      - docker-compose -f "{{.DOCKER_DC_FILE}}" rm -f
+
+  restart_docker:
+    cmds:
+      - task: stop_docker
+      - task: sleep
+      - task: start_docker
+
+  sleep:
+    vars:
+      DURATION: '{{default 5 .DURATION}}'
+    cmds:
+      - sleep {{.DURATION}}

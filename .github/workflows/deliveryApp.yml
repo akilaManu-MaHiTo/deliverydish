@@ -20,4 +20,4 @@ jobs:
       run: ./mvnw -ntp verify
       env:
         JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.14-7/x64
-        SPRING_DATA_MONGODB_URI: ${{ secrets.SPRING_DATA_MONGODB_URI }}
+        SPRING_DATA_MONGODB_URI: ${{ secrets.SPRING_PRODUCT_MONGODB_URI }}
